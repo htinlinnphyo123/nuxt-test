@@ -1,13 +1,13 @@
 <template>
   <div class="mx-3">
     <div class="flex items-center whitespace-nowrap w-auto gap-2">
-      <router-link
-        :to="{ name: 'categoryDetail', params: { id: categoryData.id } }"
+      <NuxtLink
+        :to="{ name: 'categories-id', params: { id: categoryData.id } }"
         class="ms-2 text-3xl hover:underline"
         :style="{ color: categoryData.color_code}"
         >
         {{ categoryData?.localizedName }}
-      </router-link>
+      </NuxtLink>
     </div>
     <br />
     <div
@@ -51,12 +51,12 @@
         </div>
       </div>
     </div>
-    <router-link
-      :to="{ name: 'categoryDetail', params: { id: categoryData.id } }"
+    <NuxtLink
+      :to="{ name: 'categories-id', params: { id: categoryData.id } }"
       class="custom-view-more"
     >
       {{ viewMore }}
-    </router-link>
+    </NuxtLink>
   </div>
 </template>
 

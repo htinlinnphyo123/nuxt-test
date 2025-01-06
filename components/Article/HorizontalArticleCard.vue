@@ -4,7 +4,7 @@
     :key="datum.id"
     class="p-2 hover:shadow-lg hover:translate-y-1 rounded border border-transparent transition-all transition-duration-300 cursor-pointer"
   >
-    <router-link :to="{ name: 'articleDetail', params: { id: datum.id } }">
+    <NuxtLink :to="{ name: 'articles', params: { id: datum.id } }">
       <div class="flex items-start gap-4 relative">
         <img
           v-on:load="imgLoaded(datum.id)"
@@ -22,7 +22,7 @@
           {{ datum.localizedTitle }}
         </p>
       </div>
-    </router-link>
+    </NuxtLink>
   </li>
 </template>
 <script setup>

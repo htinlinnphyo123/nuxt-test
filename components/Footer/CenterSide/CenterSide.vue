@@ -4,10 +4,10 @@
         <div v-for="category in props.localizedCategories" 
             :key="category.localizedName"
             class="my-1">
-            <router-link :to="{ name: 'categoryDetail', params: { id: category.id } }"
+            <NuxtLink :to="{ name: 'categories-id', params: { id: category.id } }"
                 class="inline-block hover:underline hover:text-brand-secondary select-none">
                 {{ category.localizedName }} ({{ category.articles_count }})
-            </router-link>
+            </NuxtLink>
         </div>
     </div>
 </template>

@@ -9,9 +9,9 @@
         style="position: relative"
       >
         <template #item="slotProps">
-          <router-link
+          <NuxtLink
             :to="{
-              name: 'articleDetail',
+              name: 'articles-id',
               params: { id: slotProps.data.id },
             }"
           >
@@ -38,7 +38,7 @@
                 </p>
               </div>
             </div>
-          </router-link>
+          </NuxtLink>
         </template>
       </Carousel>
     </div>

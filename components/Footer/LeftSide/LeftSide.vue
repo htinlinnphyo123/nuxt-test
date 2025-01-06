@@ -3,12 +3,12 @@
     <BrandLogo />
     <div class="mt-4 xl:ps-1">
       <div v-for="about in props.localizedAbout" :key="about.slug" class="my-2">
-        <router-link
-          :to="'about#' + about.slug"
+        <NuxtLink
+          to="/"
           class="hover:underline hover:text-brand-secondary text-sm"
         >
           {{ about.localizedTitle }}
-        </router-link>
+        </NuxtLink>
       </div>
     </div>
   </div>

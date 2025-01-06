@@ -12,8 +12,8 @@
             :key="index"
             class="me-32 cursor-pointer hover:shadow-lg p-1 transition-all transition-duration-300"
           >
-            <router-link
-              :to="{ name: 'articleDetail', params: { id: datum.id } }"
+            <NuxtLink
+              :to="{ name: 'articles-id', params: { id: datum.id } }"
             >
               <div class="flex justify-center align-middle">
                 <div class="me-1">
@@ -30,7 +30,7 @@
                   {{ datum.localizedTitle }}
                 </div>
               </div>
-            </router-link>
+            </NuxtLink>
           </span>
         </MarqueeComponent>
       </SplitterPanel>

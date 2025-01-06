@@ -1,13 +1,13 @@
 <template>
   <div class="select-none text-white h-9 cursor-pointer">
-    <router-link
+    <NuxtLink
       to="/"
       v-if="isHome"
       class="hover:bg-brand-secondary/75 transition duration-200 h-full flex items-center rounded-lg px-4"
       :class="{'bg-brand-secondary hover:text-white':route.path == '/'}"
     >
       <span>{{ localizedName }}</span>
-    </router-link>
+    </NuxtLink>
     <p
       v-else
       class="hover:bg-brand-secondary/75 transition duration-200 h-full flex items-center px-4 tracking-wide rounded-lg"

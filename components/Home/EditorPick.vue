@@ -14,9 +14,9 @@
       <ArticleCard :articles="data" :categoryShow="true" />
     </div>
     <br />
-    <router-link :to="{ name: 'homeArticleViewMore' }" class="custom-view-more">
+    <NuxtLink to="/" class="custom-view-more">
       {{ viewMore }}
-    </router-link>
+    </NuxtLink>
   </div>
 </template>
 

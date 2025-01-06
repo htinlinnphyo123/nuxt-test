@@ -17,9 +17,9 @@
         >
           <ArticleCard :articles="data" :categoryShow="true" />
         </div>
-        <router-link :to="{ name: 'latestArticle' }" class="custom-view-more">
+        <NuxtLink to="/" class="custom-view-more">
           {{ viewMore }}
-        </router-link>
+        </NuxtLink>
       </div>
       <div class="col-span-2 xl:col-span-1 mt-10 xl:mt-0">
         <ul

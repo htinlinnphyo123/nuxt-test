@@ -4,12 +4,10 @@ import Vue3Marquee from 'vue3-marquee'
 import VueAudioPlayer from '@liripeng/vue-audio-player'
 import Tooltip from 'primevue/tooltip'
 import ToastService from 'primevue/toastservice'
-import { createHead } from '@vueuse/head'
 import Vue3SocialSharingPlugin from 'vue3-social-sharing'
 import Toast from 'primevue/toast'
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const head = createHead()
 
   nuxtApp.vueApp.use(PrimeVue, {
     unstyle: true,
@@ -27,6 +25,5 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component('Toast', Toast)
   nuxtApp.vueApp.use(Vue3Marquee, { name: 'MarqueeComponent' })
   nuxtApp.vueApp.component('VueAudioPlayer', VueAudioPlayer)
-  nuxtApp.vueApp.use(head)
   nuxtApp.vueApp.use(Vue3SocialSharingPlugin)
 })
