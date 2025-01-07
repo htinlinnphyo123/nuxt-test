@@ -5,7 +5,7 @@
       :key="article.id"
       class="col-span-1 rounded-md xl:hover:scale-105 shadow-xl duration-300 mb-4 lg:mb-0 card-container"
     >
-      <NuxtLink :to="{ name: 'articles', params: { id: article.id } }">
+      <NuxtLink :to="{ name: 'articles-id', params: { id: article.id } }">
         <CardThumbnail
           :thumbnail="article.thumbnail"
           :id="article.id"

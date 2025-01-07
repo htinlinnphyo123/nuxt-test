@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col justify-center items-center gap-2 mb-4 md:mb-8">
     <a
-      :href="datum.link"
       class="mx-3 text-center inline"
       v-for="(datum, index) in data"
+      :href="datum.link"
       :key="index"
       target="_blank"
     >
@@ -36,7 +36,7 @@
 
 <script setup>
 import { defineProps, ref, onMounted, watch } from "vue";
-import placeHolder from "@/assets/logo/place_holder.webp";
+import placeHolder from "@/assets/logo/banner970-90.png";
 
 const props = defineProps({
   data: Array,
