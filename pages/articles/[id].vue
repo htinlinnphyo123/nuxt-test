@@ -31,17 +31,21 @@ watch(
     localLoading.value = false;
   }
 );
-useHead(() => ({
-  title: localizedArticle.value?.title,
-  meta: [
-    { property: "og:description", content: 'Read More' },
-    { property: "og:title", content: localizedArticle.value?.title },
-    { property: "og:image", content: localizedArticle.value?.thumbnail },
-    { property: "twitter:title", content: localizedArticle.value?.title },
-    { property: "twitter:image", content: localizedArticle.value?.thumbnail },
-    { property: "twitter:description", content: 'Read More' },
-  ],
-}));
+watch(localizedArticle, (newArticle) => {
+  if (newArticle) {
+    useHead({
+      title: newArticle.title,
+      meta: [
+        { property: "og:description", content: newArticle.description || 'Read More' },
+        { property: "og:title", content: newArticle.title },
+        { property: "og:image", content: newArticle.thumbnail },
+        { property: "twitter:title", content: newArticle.title },
+        { property: "twitter:image", content: newArticle.thumbnail },
+        { property: "twitter:description", content: newArticle.description || 'Read More' },
+      ],
+    });
+  }
+});
 </script>
 
 <template>
