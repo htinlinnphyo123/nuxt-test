@@ -52,7 +52,7 @@ const head = computed(() => {
         {
           hid: "og:image",
           property: "og:image",
-          content: article.imageUrl || "/default-image.jpg",
+          content: article.imageUrl,
         },
         { hid: "og:url", property: "og:url", content: window.location.href },
         { hid: "og:type", property: "og:type", content: "article" },
@@ -65,7 +65,7 @@ const head = computed(() => {
         {
           hid: "twitter:image",
           name: "twitter:image",
-          content: article.imageUrl || "/default-image.jpg",
+          content: article.imageUrl,
         },
         {
           hid: "twitter:card",
