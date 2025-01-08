@@ -31,6 +31,53 @@ watch(
     localLoading.value = false;
   }
 );
+
+const head = computed(() => {
+  if (localizedArticle.value) {
+    const article = localizedArticle.value;
+    return {
+      title: `${article.title} - My Website`,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: article.excerpt || article.content,
+        },
+        { hid: "og:title", property: "og:title", content: article.title },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content: article.excerpt || article.content,
+        },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content: article.imageUrl || "/default-image.jpg",
+        },
+        { hid: "og:url", property: "og:url", content: window.location.href },
+        { hid: "og:type", property: "og:type", content: "article" },
+        { hid: "twitter:title", name: "twitter:title", content: article.title },
+        {
+          hid: "twitter:description",
+          name: "twitter:description",
+          content: article.excerpt || article.content,
+        },
+        {
+          hid: "twitter:image",
+          name: "twitter:image",
+          content: article.imageUrl || "/default-image.jpg",
+        },
+        {
+          hid: "twitter:card",
+          name: "twitter:card",
+          content: "summary_large_image",
+        },
+      ],
+      link: [{ rel: "canonical", href: window.location.href }],
+    };
+  }
+  return {};
+});
 </script>
 
 <template>
