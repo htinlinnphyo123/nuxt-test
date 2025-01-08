@@ -24,19 +24,64 @@ watch(
     localLoading.value = true;
     // console.log("hey");
     await fetchArticleDetail({ article_id: newId });
+    useHead(head);
     localLoading.value = false;
   },
   {
     immediate: true,
   }
 );
+const head = computed(() => {
+  if (localizedArticle.value) {
+    const article = localizedArticle.value;
+    return {
+      title: `${article.title} - My Website`,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: 'Hello',
+        },
+        { hid: "og:title", property: "og:title", content: article.title },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content: 'Hello',
+        },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content: article.thumbnail,
+        },
+        { hid: "og:url", property: "og:url", content: window.location.href },
+        { hid: "og:type", property: "og:type", content: "article" },
+        { hid: "twitter:title", name: "twitter:title", content: article.title },
+        {
+          hid: "twitter:description",
+          name: "twitter:description",
+          content: 'Hello',
+        },
+        {
+          hid: "twitter:image",
+          name: "twitter:image",
+          content: article.thumbnail,
+        },
+        {
+          hid: "twitter:card",
+          name: "twitter:card",
+          content: "summary_large_image",
+        },
+      ],
+      link: [{ rel: "canonical", href: window.location.href }],
+    };
+  }
+  return {};
+});
 
 </script>
 
 <template>
   <div>
-    <MetaHeader :title="localizedArticle.title"
-      :thumbnail="localizedArticle.thumbnail" />
     <div v-if="loading === true || localLoading == true">
       <Loader />
     </div>
