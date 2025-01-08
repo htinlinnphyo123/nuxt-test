@@ -31,6 +31,17 @@ watch(
     localLoading.value = false;
   }
 );
+useHead(() => ({
+  title: localizedArticle.value?.title,
+  meta: [
+    { property: "og:description", content: 'Read More' },
+    { property: "og:title", content: localizedArticle.value?.title },
+    { property: "og:image", content: localizedArticle.value?.thumbnail },
+    { property: "twitter:title", content: localizedArticle.value?.title },
+    { property: "twitter:image", content: localizedArticle.value?.thumbnail },
+    { property: "twitter:description", content: 'Read More' },
+  ],
+}));
 </script>
 
 <template>
