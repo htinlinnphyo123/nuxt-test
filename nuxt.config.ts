@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   ],
 
   build: {
-    transpile: ['primevue']
+    transpile: ['primevue','@liripeng/vue-audio-player']
   },
 
   plugins: [
