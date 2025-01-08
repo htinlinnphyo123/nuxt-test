@@ -1,4 +1,5 @@
 export default defineNuxtConfig({
+  ssr:true,
   css: [
     '~/assets/main.css',
     '~/assets/tailwind.css',
