@@ -19,34 +19,45 @@ import SubcategoriesList from "@/components/Category/SubcategoriesList.vue";
 import ArticleIndex from "@/components/Article/Index.vue";
 import TypeFilter from "@/components/Article/TypeFilter.vue";
 import { useRoute } from "vue-router";
-import { ref, watch , inject } from "vue";
+import { ref, watch, inject } from "vue";
 
 const route = useRoute();
 const subcategoryId = ref(route.params.subId);
 const articleType = ref(null);
-const categories = inject(['provideCategories']);
+const categories = inject(["provideCategories"]);
 
 watch(
   () => route.params.id,
   function () {
     subcategoryId.value = "";
     articleType.value = null;
-    const getCategory = categories.value.filter(function(category){
-      return category.id === route.params.id;
-    })[0];
-    useHead({
-      title: `${getCategory.name} - BC News`,
-      meta: [
-        {
-          name: "description",
-          content: `Explore articles in category ${getCategory.name}.`,
-        },
-        { name: "keywords", content: `category, ${route.params.id}, articles` },
-      ],
-    });
+    // const getCategory = categories.value.filter(function(category){
+    //   return category.id === route.params.id;
+    // })[0];
+    // useHead({
+    //   title: `${getCategory.name} - BC News`,
+    //   meta: [
+    //     {
+    //       name: "description",
+    //       content: `Explore articles in category ${getCategory.name}.`,
+    //     },
+    //     { name: "keywords", content: `category, ${route.params.id}, articles` },
+    //   ],
+    // });
   },
   { immediate: true }
 );
+
+useHead({
+  title: `Category Detail - BC News`,
+  meta: [
+    {
+      name: "Category Detail",
+      content: `Category Detail`,
+    },
+    { name: "keywords", content: `category, ${route.params.id}, articles` },
+  ],
+});
 
 watch(
   () => route.params.subId,
