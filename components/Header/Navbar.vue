@@ -30,7 +30,6 @@ import DesktopMenu from "./DesktopMenu.vue";
 import { onMounted, ref, watch } from "vue";
 import HamBurger from "../Basic/HamBurger.vue";
 import { useRoute } from "vue-router";
-import DarkMode from "./DarkMode.vue";
 
 const showMobileMenu = ref(false);
 

@@ -49,13 +49,19 @@ watch(
 );
 
 useHead({
-  title: `Category Detail - BC News`,
+  title: 'Category Detail',
   meta: [
-    {
-      name: "Category Detail",
-      content: `Category Detail`,
-    },
-    { name: "keywords", content: `category, ${route.params.id}, articles` },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:description', content: 'Category Detail' },
+    { property: 'og:title', content: 'Category Detail' },
+    { property: 'og:image', content: 'https://prod-bcnews.sgp1.cdn.digitaloceanspaces.com/articles/485/HPSqc3y1EUb4A2Uy61haOV2DUmXU2wcPGO5UVxfQ.jpg' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Category Detail' },
+    { name: 'twitter:image', content: 'https://prod-bcnews.sgp1.cdn.digitaloceanspaces.com/articles/485/HPSqc3y1EUb4A2Uy61haOV2DUmXU2wcPGO5UVxfQ.jpg' },
+    { name: 'twitter:description', content: 'Category Detail' },
+  ],
+  link: [
+    { rel: 'icon', type: 'image/x-icon', href: 'https://prod-bcnews.sgp1.cdn.digitaloceanspaces.com/articles/485/HPSqc3y1EUb4A2Uy61haOV2DUmXU2wcPGO5UVxfQ.jpg' },
   ],
 });
 

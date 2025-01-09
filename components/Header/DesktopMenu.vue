@@ -1,11 +1,9 @@
 <template>
-    <ul id="menu-bar" class="hidden xl:flex space-x-2">
-        <CategoryList :categories="categories" />      
-    </ul>
+    <DesktopCategoryList :categories="categories" />      
 </template>
 <script setup>
     import { inject } from 'vue';
-    import CategoryList from "@/components/Category/CategoryList.vue"
+    import DesktopCategoryList from './DesktopCategoryList.vue';
 
     const categories = inject("provideCategories",[]);
     

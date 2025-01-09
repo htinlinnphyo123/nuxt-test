@@ -1,6 +1,5 @@
 export default defineNuxtConfig({
   ssr:true,
-  
   css: [
     '~/assets/main.css',
     '~/assets/tailwind.css',
@@ -35,6 +34,7 @@ export default defineNuxtConfig({
 
   plugins: [
     '~/plugins/init.ts',
+    '~/plugins/detect-online.js'
   ],
 
   postcss: {
