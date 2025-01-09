@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MetaHeader />
+    <!-- <MetaHeader /> -->
     <div v-if="loading === true">
       <Loader />
     </div>
@@ -38,7 +38,6 @@ import BannerSection from "@/components/Home/BannerSection.vue";
 import SponsorAds from "@/components/Home/SponsorAds.vue";
 import Highlight from "@/components/Home/Highlight.vue";
 import Loader from "@/components/Home/Loader.vue";
-import MetaHeader from "~/components/MetaTag/MetaHeader.vue";
 
 const {
   localizedFlashNews,

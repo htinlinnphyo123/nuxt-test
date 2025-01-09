@@ -2,9 +2,9 @@
 import Loader from "@/components/ArticleDetail/Loader.vue";
 import ShowMedia from "@/components/ArticleDetail/ShowMedia.vue";
 import useArticleDetail from "@/composables/ArticleDetail";
-import { onMounted, watch, ref } from "vue";
+import { watch, ref } from "vue";
 import { useRoute } from "vue-router";
-import MetaHeader from "~/components/MetaTag/MetaHeader.vue";
+import { useHead } from "@vueuse/head";
 
 const route = useRoute();
 const localLoading = ref(false);
