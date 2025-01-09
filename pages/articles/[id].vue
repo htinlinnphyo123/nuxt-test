@@ -24,7 +24,6 @@ watch(
     localLoading.value = true;
     // console.log("hey");
     await fetchArticleDetail({ article_id: newId });
-    useHead(head);
     localLoading.value = false;
   },
   {
@@ -77,6 +76,8 @@ const head = computed(() => {
   }
   return {};
 });
+useHead(head);
+
 
 </script>
 
