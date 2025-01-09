@@ -3,7 +3,7 @@ import Loader from "@/components/ArticleDetail/Loader.vue";
 import ShowMedia from "@/components/ArticleDetail/ShowMedia.vue";
 import useArticleDetail from "@/composables/ArticleDetail";
 import { watch, ref } from "vue";
-import { useRoute,useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useHead } from "@vueuse/head";
 
 const route = useRoute();
@@ -30,37 +30,40 @@ watch(
     immediate: true,
   }
 );
-const domainName = "https://buddhist.news/";
-const head = computed(() => {
-  if (localizedArticle.value) {
-    const article = localizedArticle.value;
-    // console.log(article);
-    return {
-      title: article.title || 'Loading...',
+const domainName = "https://buddhist.news";
+watch(
+  localizedArticle,
+  (article) => {
+    useHead({
+      title: article.title,
       meta: [
         {
           hid: "description",
           name: "description",
-          content: `Read More`,
+          content: `Read this article Now.`,
         },
-        { hid: "og:title", property: "og:title", content: article.title || 'Loading...' },
+        { hid: "og:title", property: "og:title", content: article.title },
         {
           hid: "og:description",
           property: "og:description",
-          content: `Read More`,
+          content: `Read this article Now.`,
         },
         {
           hid: "og:image",
           property: "og:image",
           content: article.thumbnail,
         },
-        { hid: "og:url", property: "og:url", content: `${domainName}${route.fullPath}` },
+        {
+          hid: "og:url",
+          property: "og:url",
+          content: `${domainName}${route.fullPath}`,
+        },
         { hid: "og:type", property: "og:type", content: "article" },
         { hid: "twitter:title", name: "twitter:title", content: article.title },
         {
           hid: "twitter:description",
           name: "twitter:description",
-          content: `Read More`,
+          content: `Read this article Now.`,
         },
         {
           hid: "twitter:image",
@@ -73,13 +76,10 @@ const head = computed(() => {
           content: "summary_large_image",
         },
       ],
-    };
-  }
-  return {};
-});
-useHead(head);
-
-
+    });
+  },
+  { immediate: true }
+);
 </script>
 
 <template>

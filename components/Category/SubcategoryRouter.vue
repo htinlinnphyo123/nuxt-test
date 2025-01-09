@@ -10,9 +10,5 @@ const props = defineProps({
   subcategories: Array,
 });
 
-const route = useRoute();
 
-const isActiveSub = (subId) => {
-  return route.params.sub === subId;
-};
 </script>
