@@ -4,7 +4,7 @@
     <div class="mt-4 xl:ps-1">
       <div v-for="about in props.localizedAbout" :key="about.slug" class="my-2">
         <NuxtLink
-          to="/"
+          :to="{ name: 'about' }"
           class="hover:underline hover:text-brand-secondary text-sm"
         >
           {{ about.localizedTitle }}
