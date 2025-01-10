@@ -27,39 +27,24 @@ const { data: posts } = await useAsyncData(
   () => $fetch('https://admin.buddhish.news/api/v1/spa/article/detail', {
     method:'POST',
     params: {
-      id: '10003NDgy10003'
+      id: route.params.id
     }
   }), {
     watch: [page]
   }
 )
-console.log(posts.value.data.article);
-
-watch(
-  () => route.params.id,
-  async (newId, oldId) => {
-    localLoading.value = true;
-    if (newId !== oldId) {
-      await fetchArticleDetail({ article_id: newId });
-    }
-    localLoading.value = false;
-  }
-);
-// Set meta tags dynamically for article page page
-watch(posts.value.data.article,(newArticle)=>{
-  useHead(() => ({
-    title: newArticle.title,
-    meta: [
-      { property: "og:title", content: newArticle.title },
-      { property: "og:image", content: newArticle.thumbnail },
-      {
-        property: "twitter:title",
-        content: newArticle.title,
-      },
-      { property: "twitter:image", content: newArticle.thumbnail },
-    ],
-  }));
-},{immediate:true,deep:true})
+useHead(() => ({
+  title: posts.value.data.article.title,
+  meta: [
+    { property: "og:title", content: posts.value.data.article.title },
+    { property: "og:image", content: posts.value.data.article.thumbnail },
+    {
+      property: "twitter:title",
+      content: posts.value.data.article.title,
+    },
+    { property: "twitter:image", content: posts.value.data.article.thumbnail },
+  ],
+}));
 </script>
 
 <template>
