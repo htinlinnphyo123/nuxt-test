@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- <MetaHeader /> -->
     <div v-if="loading === true">
       <Loader />
     </div>
@@ -54,6 +55,7 @@ const {
 onMounted(async () => {
   await fetchHomeData();
 });
+
 </script>
 
 <style scoped>

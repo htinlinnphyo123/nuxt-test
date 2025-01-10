@@ -2,8 +2,9 @@
 import Loader from "@/components/ArticleDetail/Loader.vue";
 import ShowMedia from "@/components/ArticleDetail/ShowMedia.vue";
 import useArticleDetail from "@/composables/ArticleDetail";
-import { onMounted, watch, ref, computed, onUnmounted } from "vue";
-import { useRoute } from "vue-router";
+import { watch, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useHead } from "@vueuse/head";
 
 const route = useRoute();
 const localLoading = ref(false);
@@ -17,55 +18,55 @@ const {
   fetchArticleDetail,
 } = useArticleDetail();
 
-onMounted(async () => {
-  await fetchArticleDetail({ article_id: route.params.id });
-});
-
 watch(
   () => route.params.id,
-  async (newId, oldId) => {
+  async (newId) => {
     localLoading.value = true;
-    if (newId !== oldId) {
-      await fetchArticleDetail({ article_id: newId });
-    }
-    localLoading.value = false;
-  }
-);
-
-const head = computed(() => {
-  if (localizedArticle.value) {
-    const article = localizedArticle.value;
-    return {
-      title: `${article.title} - My Website`,
+    // console.log("hey");
+    await fetchArticleDetail({ article_id: newId });
+    useHead({
+      title: localizedArticle.value.localizedTitle || "Loading ...",
       meta: [
         {
           hid: "description",
           name: "description",
-          content: article.excerpt || article.content,
+          content: `Read this article Now.`,
         },
-        { hid: "og:title", property: "og:title", content: article.title },
+        {
+          hid: "og:title",
+          property: "og:title",
+          content: localizedArticle.value.localizedTitle || "Loading ...",
+        },
         {
           hid: "og:description",
           property: "og:description",
-          content: article.excerpt || article.content,
+          content: `Read this article Now.`,
         },
         {
           hid: "og:image",
           property: "og:image",
-          content: article.imageUrl,
+          content: localizedArticle.value.thumbnail || "default-thumbnail.jpg",
         },
-        { hid: "og:url", property: "og:url", content: window.location.href },
+        {
+          hid: "og:url",
+          property: "og:url",
+          content: `${domainName}${route.fullPath}`,
+        },
         { hid: "og:type", property: "og:type", content: "article" },
-        { hid: "twitter:title", name: "twitter:title", content: article.title },
+        {
+          hid: "twitter:title",
+          name: "twitter:title",
+          content: localizedArticle.value.localizedTitle || "Default Title",
+        },
         {
           hid: "twitter:description",
           name: "twitter:description",
-          content: article.excerpt || article.content,
+          content: `Read this article Now.`,
         },
         {
           hid: "twitter:image",
           name: "twitter:image",
-          content: article.imageUrl,
+          content: localizedArticle.value.thumbnail || "default-thumbnail.jpg",
         },
         {
           hid: "twitter:card",
@@ -73,11 +74,16 @@ const head = computed(() => {
           content: "summary_large_image",
         },
       ],
-      link: [{ rel: "canonical", href: window.location.href }],
-    };
+    });
+
+    localLoading.value = false;
+  },
+  {
+    immediate: true,
   }
-  return {};
-});
+);
+console.log(localizedArticle);
+const domainName = "https://buddhist.news";
 </script>
 
 <template>

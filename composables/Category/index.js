@@ -29,7 +29,7 @@ export default function useCategories() {
                 }, 300);
             });
             const response = await apiClient('category/index');
-            console.log(response);
+            // console.log(response);
             categories.value = response.data.data;
         } catch (err) {
             error.value = err.response?.data?.message;
