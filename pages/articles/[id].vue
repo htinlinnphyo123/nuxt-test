@@ -13,70 +13,53 @@ const {
   localizedArticle,
   localizedRelatedArticles,
   sponsorAds,
-  error,
   loading,
   fetchArticleDetail,
 } = useArticleDetail();
 
-watch(
-  () => route.params.id,
-  async (newId) => {
-    localLoading.value = true;
-    // console.log("hey");
-    await fetchArticleDetail({ article_id: newId });
-    useHead({
-  title: localizedArticle.value.localizedTitle || "Loading ...",
-  meta: [
-    {
-      hid: "description",
-      name: "description",
-      content: `Read this article Now.`,
-    },
-    { hid: "og:title", property: "og:title", content: localizedArticle.value.localizedTitle || "Loading ..." },
-    {
-      hid: "og:description",
-      property: "og:description",
-      content: `Read this article Now.`,
-    },
-    {
-      hid: "og:image",
-      property: "og:image",
-      content: localizedArticle.value.thumbnail || "default-thumbnail.jpg",
-    },
-    {
-      hid: "og:url",
-      property: "og:url",
-      content: `${domainName}${route.fullPath}`,
-    },
-    { hid: "og:type", property: "og:type", content: "article" },
-    { hid: "twitter:title", name: "twitter:title", content: localizedArticle.value.localizedTitle || "Default Title" },
-    {
-      hid: "twitter:description",
-      name: "twitter:description",
-      content: `Read this article Now.`,
-    },
-    {
-      hid: "twitter:image",
-      name: "twitter:image",
-      content: localizedArticle.value.thumbnail || "default-thumbnail.jpg",
-    },
-    {
-      hid: "twitter:card",
-      name: "twitter:card",
-      content: "summary_large_image",
-    },
-  ],
+onMounted(() => {
+  fetchArticleDetail({ article_id: route.params.id });
 });
 
+const page = ref(1)
+const { data: posts } = await useAsyncData(
+  'posts',
+  () => $fetch('https://admin.buddhish.news/api/v1/spa/article/detail', {
+    method:'POST',
+    params: {
+      id: '10003NDgy10003'
+    }
+  }), {
+    watch: [page]
+  }
+)
+console.log(posts.value.data.article);
+
+watch(
+  () => route.params.id,
+  async (newId, oldId) => {
+    localLoading.value = true;
+    if (newId !== oldId) {
+      await fetchArticleDetail({ article_id: newId });
+    }
     localLoading.value = false;
-  },
-  {
-    immediate: true,
   }
 );
-console.log(localizedArticle)
-const domainName = "https://buddhist.news";
-
+// Set meta tags dynamically for article page page
+watch(posts.value.data.article,(newArticle)=>{
+  useHead(() => ({
+    title: newArticle.title,
+    meta: [
+      { property: "og:title", content: newArticle.title },
+      { property: "og:image", content: newArticle.thumbnail },
+      {
+        property: "twitter:title",
+        content: newArticle.title,
+      },
+      { property: "twitter:image", content: newArticle.thumbnail },
+    ],
+  }));
+},{immediate:true,deep:true})
 </script>
 
 <template>
