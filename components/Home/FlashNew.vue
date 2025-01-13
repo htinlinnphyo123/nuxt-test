@@ -12,9 +12,7 @@
             :key="index"
             class="me-32 cursor-pointer hover:shadow-lg p-1 transition-all transition-duration-300"
           >
-            <NuxtLink
-              :to="{ name: 'articles-id', params: { id: datum.id } }"
-            >
+            <NuxtLink :to="{ name: 'articles-id', params: { id: datum.id } }">
               <div class="flex justify-center align-middle">
                 <div class="me-1">
                   <Image
@@ -55,4 +53,8 @@ const props = defineProps({
 // );
 </script>
 
-<style scoped></style>
+<style scoped>
+.vue3-marquee {
+  --duration: 50s !important;
+}
+</style>
